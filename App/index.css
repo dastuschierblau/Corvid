@@ -1,0 +1,73 @@
+/* Main CSS styles */
+
+body, div, ul, li, a, h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+a:active, a:visited, a {
+	color: #222222;
+}
+
+.sidebar {
+	position: fixed;
+	left: 10px;
+	top: 10px;
+	bottom: 10px;
+	width: 30vw;
+	background-color: yellow;
+}
+
+.sidebar-item {
+	padding: 8px;
+	border: 1px solid #444444;
+	margin: 5px;
+}
+
+.sidebar-item:hover {
+	cursor: pointer;
+	background-color: #444444;
+	color: yellow;
+}
+
+.post {
+	float: right;
+	margin: 10px;
+	width: 65vw;
+	min-height: 90vh;
+	background-color: yellow;
+	position: relative;
+}
+
+/* --------------------- FOOTER STYLES ---------------------*/
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-top: 1px solid #222222;
+	display: flex;
+	justify-content: space-between;
+}
+
+footer > * {
+	display: flex;
+	height: 40px;
+	align-items: center;
+}
+
+footer li {
+	padding: 0 10px;
+}
+
+.footer-left {
+	
+}
+
+.footer-right {
+	
+}

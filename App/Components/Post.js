@@ -1,0 +1,73 @@
+const React = require( 'react' ),
+      { Redirect } = require( 'react-router-dom' ),
+      { connect } = require( 'react-redux' );
+
+const TOGGLE_POST = 'TOGGLE_POST';
+	  
+function setCurrentPost( post ) {
+	return {
+		type: TOGGLE_POST,
+		post
+	};
+}
+	  
+class Post extends React.Component {
+  constructor( props ) {
+	  super( props );
+	  this.state = {
+		currentPost: null  
+	  };
+  }
+	
+  componentDidMount() {
+	  const { id } = this.props.match.params;
+		
+	  this.setState(() => ({
+		  currentPost: id
+	  }));
+
+  }
+  
+  componentWillReceiveProps( nextProps ) {
+	  const { id } = nextProps.match.params;
+	  
+	  if( nextProps.location.pathname !== this.props.location.pathname ) {
+		  this.setState(() => ({
+			  currentPost: id
+		  }));
+	  }
+  }
+	
+  render() {
+	const { posts } = this.props;
+
+    return (
+	  <div className='post'>
+	  
+		  { posts.filter(({ id }) => id === this.state.currentPost )
+		  .map( item => (
+		    <div key={ item.id }>
+		      <h1>{item.title}</h1> 
+			  <p>{item.content}</p>
+			  <footer>
+			    <ul className='footer-left'>
+			      <li>{ item.author }</li>
+				  <li>{ item.timestamp }</li>
+				</ul>
+				<ul className='footer-right'>
+				  <li>Edit</li>
+				  <li>Remove</li>
+				</ul>
+			  </footer>
+		    </div>
+		  ))
+		  }
+		  
+	  </div>
+	);
+  }
+}
+
+module.exports = connect(( state ) => ({
+  posts: state.posts
+}))( Post );
