@@ -48,7 +48,7 @@ const posts = [
 
 export function _getPosts() {
 	return new Promise(( res, rej ) => {
-		setTimeout(() => res( posts ), 1000 );
+		setTimeout(() => res( posts ), 2000 );
 	});
 }
 

@@ -13,6 +13,7 @@ import { createStore, applyMiddleware, combineReducers } from'redux';
 const RECEIVE_POSTS = 'RECEIVE_POSTS',
       ADD_POST = 'ADD_POST',
 	  TOGGLE_POST = 'SET_POST',
+	  TOGGLE_LOADING = 'TOGGLE_LOADING',
 	  REMOVE_POST = 'REMOVE_POST',
 	  USER_LOGIN = 'USER_LOGIN';
 	
@@ -44,6 +45,15 @@ function userAuth ( state = {}, action ) {
 	}
 }
 
+function loading ( state = {}, action ) {
+	switch( action.type ) {
+		case TOGGLE_LOADING:
+		  return Object.assign( {}, state.loading, { isLoading: !state.isLoading } );
+		default:
+		 return state;
+	}
+}
+
 const logger = ( store ) => ( next ) => ( action ) => {
 	console.group( action.type );
 	console.log( 'The action: ', action );
@@ -54,7 +64,7 @@ const logger = ( store ) => ( next ) => ( action ) => {
 	return result;
 };
 	  
-const store = createStore( combineReducers({ posts, userAuth }), applyMiddleware( logger, thunk ) );
+const store = createStore( combineReducers({ posts, userAuth, loading }), applyMiddleware( logger, thunk ) );
 	  
 class AppContainer extends React.Component {
   render() {

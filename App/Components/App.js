@@ -11,12 +11,19 @@ import { _getPosts } from '../utils/mockData.js';
 const ADD_POST = 'ADD_POST',
       REMOVE_POST = 'REMOVE_POST',
 	  RECEIVE_POSTS = 'RECEIVE_POSTS',
+	  TOGGLE_LOADING = 'TOGGLE_LOADING',
 	  USER_LOGIN = 'USER_LOGIN';
 	  
 function login ( user ) {
 	return {
 		type: USER_LOGIN,
 		username: user
+	};
+}
+
+function toggleLoading () {
+	return {
+		type: TOGGLE_LOADING,
 	};
 }
 	  
@@ -44,8 +51,10 @@ function receivePosts ( posts ) {
 
 function handleReceivePosts() {
 	return ( dispatch ) => {
+		dispatch( toggleLoading() );
 		_getPosts()
 		  .then( posts => {
+			 dispatch( toggleLoading() );
 			 dispatch( receivePosts( posts ) ); 
 		  })
 		  .catch(( err ) => console.err( err ) );
@@ -63,6 +72,7 @@ class App extends React.Component {
 	render() {
 		const { posts, match } = this.props;
 		const { user } = this.props.login;
+		const { isLoading } = this.props.loading;
 			
 		return (
 		  <div>
@@ -74,7 +84,9 @@ class App extends React.Component {
 			  </Link>
 			}
 			
-		  { posts.map( item => {
+			{ isLoading && <h2>Loading...</h2> }
+			
+		  { !isLoading && posts.map( item => {
 			 return <Link to={ `/${item.id}` }
 				 key={ item.id }>
 			   <li
@@ -107,7 +119,8 @@ class App extends React.Component {
 function mapStateToProps ( state ) {
 	return {
 		posts: state.posts,
-		login: state.userAuth
+		login: state.userAuth,
+		loading: state.loading
 	};
 }
 
