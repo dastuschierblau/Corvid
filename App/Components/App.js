@@ -63,20 +63,7 @@ function handleReceivePosts() {
 	};
 }
 
-function sortPosts( keyword ) {
-  const regex = new RegExp( keyword, 'ig' );
-	
-  return this.posts.filter( item => {
-	 let i;
-     for( i = 0; i < item.keywords.length; i++ ) {
-       if( item.keywords[i].match( regex ) ) {
-		   return true;
-	   } 
-	 }	 
-	 
-	 return false;
-  });
-}
+
 	  
 class App extends React.Component {
 	componentDidMount() {
@@ -94,8 +81,10 @@ class App extends React.Component {
 			
 		return (
 		  <div>
-		    <Searchbar el={ searchbar }
-			  sort={ sortPosts }/>
+		  
+		  { !isLoading &&
+		    <Searchbar el={ searchbar } />
+		  }
 		  
 		    <ul className='sidebar'>
 			

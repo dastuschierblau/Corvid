@@ -10,6 +10,27 @@ export function getInitialData() {
 	  .then( data => data );
 }
 
+export function findMatch(wordToFind, array){
+  /* Will return a new array filtered by matching of input
+    string
+  */
+  return array.filter(item => {
+    let regex = new RegExp(wordToFind, 'gi');
+    let foundMatch = false,
+	    i;
+    const len = item.keywords.length;
+	
+	for( i = 0; i < len; i++ ) {
+		if( item.keywords[i].match( regex ) ) {
+			foundMatch = true;
+		}
+	}
+	
+	return foundMatch;
+  });
+  
+}
+
 /* To be implemented later */
 function savePost( post ) {
 	return new Promise(( res, rej ) => {

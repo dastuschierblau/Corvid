@@ -4,12 +4,38 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { findMatch } from '../utils/API.js';
+
+
+const LOAD_SUGGESTIONS = 'LOAD_SUGGESTIONS',
+      RESET_SUGGESTIONS = 'RESET_SUGGESTIONS';
+
+function loadSuggestions( suggestions ) {
+	return {
+		type: LOAD_SUGGESTIONS,
+		suggestions
+	};
+}
+
+function resetSuggestions() {
+	return {
+		type: RESET_SUGGESTIONS
+	}
+}
+
 
 function Suggestions ( props ) {
 	
 	return (
 	  <ul className='searchbar-suggestions'>
-	   <li>Test</li>
+	  { props.items.map( item => {
+		 return (
+           <li key={ item.id }
+		     className='searchbar-suggestion'>
+			   { item.title }
+		   </li>
+         );		 
+	  })}
 	  </ul>
 	);
 }
@@ -29,9 +55,12 @@ class Searchbar extends React.Component {
   handleChange() {
 	  const value = this.input.value;
 	  
-	  this.props.sort( value );
+	  const matches = findMatch( value, this.props.posts );
+	  console.log( matches );
 	  // Dispatch an action to create a suggestions property
 	  // in the state
+	  this.props.dispatch( resetSuggestions() );
+	  this.props.dispatch( loadSuggestions( matches ) );
   }
 	
   render() {
@@ -47,7 +76,7 @@ class Searchbar extends React.Component {
 		
 		{/* Pass in the state.suggestions property to the Suggestions
 		component so that we can map over it */}
-		<Suggestions />
+		<Suggestions items={ this.props.suggestions }/>
 		
 	  </div>
 	
@@ -61,4 +90,7 @@ class Searchbar extends React.Component {
   }
 }
 
-export default connect(( state ) => state )( Searchbar );
+export default connect(({ posts, suggestions }) => ({
+  posts,
+  suggestions
+}))( Searchbar );

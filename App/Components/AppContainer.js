@@ -16,6 +16,8 @@ const RECEIVE_POSTS = 'RECEIVE_POSTS',
 	  TOGGLE_POST = 'SET_POST',
 	  TOGGLE_LOADING = 'TOGGLE_LOADING',
 	  REMOVE_POST = 'REMOVE_POST',
+	  LOAD_SUGGESTIONS = 'LOAD_SUGGESTIONS',
+	  RESET_SUGGESTIONS = 'RESET_SUGGESTIONS',
 	  USER_LOGIN = 'USER_LOGIN';
 	
 function posts ( state = [], action ) {
@@ -55,6 +57,17 @@ function loading ( state = {}, action ) {
 	}
 }
 
+function suggestions ( state = [], action ) {
+	switch( action.type ) {
+		case LOAD_SUGGESTIONS:
+		  return state.concat( action.suggestions );
+		case RESET_SUGGESTIONS:
+		  return state = [];
+		default: 
+		  return state;
+	}
+}  
+
 /* Logger middleware */
 const logger = ( store ) => ( next ) => ( action ) => {
 	console.group( action.type );
@@ -67,7 +80,7 @@ const logger = ( store ) => ( next ) => ( action ) => {
 };
 	  
 /* Create store */
-const store = createStore( combineReducers({ posts, userAuth, loading }), applyMiddleware( logger, thunk ) );
+const store = createStore( combineReducers({ posts, suggestions, userAuth, loading }), applyMiddleware( logger, thunk ) );
 	  
 
 class AppContainer extends React.Component {

@@ -78,8 +78,15 @@ a:active, a:visited, a {
 .searchbar-suggestions {
 	background-color: #deadff;
 	width: 50vw;
-	
 }
+
+.searchbar-suggestion {
+	height: 20px;
+}
+  .searchbar-suggestion:nth-child(even) {
+	  background-color: purple;
+	  color: #fafafa;
+  }
 
 .searchbar-tab {
 	float: right;
