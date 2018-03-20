@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Link, Switch } from 'react-router-dom';
 import Post from './Post.js';
+import AddPost from './AddPost.js';
 	  
-import { getInitialData } from '../utils/API';
+import { getInitialData } from '../utils/API.js';
 
 import { _getPosts } from '../utils/mockData.js';
 	  //addPost = require( '../Actions/shared.js' );
@@ -95,9 +96,17 @@ class App extends React.Component {
                </li>
             </Link>			   
 		  })}
+		  
+		  <Link to='/addPost'>
+		    <li className='addPost'>
+		      Add Post
+		    </li>
+		  </Link>
+		  
 		    </ul>
 			
 			<Switch>
+			
 			  <Route exact path='/' render={() => {
 				 return (
 				  <div className='post'>
@@ -105,10 +114,15 @@ class App extends React.Component {
 				  </div>
 				 );
 			  }} />
+			  
+			  <Route path='/addPost' component={ AddPost } />
+			  
 			  <Route path='/:id' render={( props ) => {
 			    return <Post {...props} />
 			  }} />
+			  
 			  <Route render={() => <h1>404</h1> } />
+			  
 			</Switch>
 			
 		  </div>

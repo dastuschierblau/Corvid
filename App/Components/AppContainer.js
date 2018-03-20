@@ -9,7 +9,8 @@ import App from './App.js';
 	  //middleware = require( '../Middleware/index.js' ),
 import { createStore, applyMiddleware, combineReducers } from'redux';
 	
-
+	
+/* Reducers */
 const RECEIVE_POSTS = 'RECEIVE_POSTS',
       ADD_POST = 'ADD_POST',
 	  TOGGLE_POST = 'SET_POST',
@@ -54,6 +55,7 @@ function loading ( state = {}, action ) {
 	}
 }
 
+/* Logger middleware */
 const logger = ( store ) => ( next ) => ( action ) => {
 	console.group( action.type );
 	console.log( 'The action: ', action );
@@ -64,8 +66,10 @@ const logger = ( store ) => ( next ) => ( action ) => {
 	return result;
 };
 	  
+/* Create store */
 const store = createStore( combineReducers({ posts, userAuth, loading }), applyMiddleware( logger, thunk ) );
 	  
+
 class AppContainer extends React.Component {
   render() {
     return (

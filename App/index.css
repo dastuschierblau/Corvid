@@ -33,6 +33,16 @@ a:active, a:visited, a {
 	color: yellow;
 }
 
+.addPost {
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
+  .addPost:hover {
+	  cursor: pointer;
+	  color: red;
+  }
+
 .post {
 	float: right;
 	margin: 10px;
@@ -40,6 +50,27 @@ a:active, a:visited, a {
 	min-height: 90vh;
 	background-color: yellow;
 	position: relative;
+	padding: 15px;
+}
+
+/* ------------------- POST FORM STYLES --------------------*/
+
+.add-post-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.add-post-title {
+	width: 40%;
+	height: 20px;
+}
+
+.add-post-content {
+	height: 40vh;
+}
+
+.add-post-submit {
+	width: 40%;
 }
 
 /* --------------------- FOOTER STYLES ---------------------*/

@@ -1,7 +1,14 @@
 const React = require( 'react' ),
       { Redirect } = require( 'react-router-dom' ),
       { connect } = require( 'react-redux' );
+	  
+/* Util function implementing newlines found inside of strings. */
+function enableNewlines( str ) {
+	return str.split( '\n' )
+	   .map( ( item, index ) => <p key={ index }>{ item }</p>);
+}
 
+/* Relevant action creators */
 const TOGGLE_POST = 'TOGGLE_POST';
 	  
 function setCurrentPost( post ) {
@@ -44,24 +51,32 @@ class Post extends React.Component {
     return (
 	  <div className='post'>
 	  
-		  { posts.filter(({ id }) => id === this.state.currentPost )
+		{ posts.filter(({ id }) => id === this.state.currentPost )
 		  .map( item => (
+		  
 		    <div key={ item.id }>
+			
 		      <h1>{item.title}</h1> 
-			  <p>{item.content}</p>
+			  { enableNewlines( item.content ) }
+			  
 			  <footer>
+			  
 			    <ul className='footer-left'>
 			      <li>{ item.author }</li>
 				  <li>{ item.timestamp }</li>
 				</ul>
+				
 				<ul className='footer-right'>
 				  <li>Edit</li>
 				  <li>Remove</li>
 				</ul>
+				
 			  </footer>
+			  
 		    </div>
+			
 		  ))
-		  }
+		}
 		  
 	  </div>
 	);
