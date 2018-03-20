@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Link, Switch } from 'react-router-dom';
 import Post from './Post.js';
 import AddPost from './AddPost.js';
+import Searchbar from './Searchbar.js';
 	  
 import { getInitialData } from '../utils/API.js';
 
@@ -61,6 +62,21 @@ function handleReceivePosts() {
 		  .catch(( err ) => console.err( err ) );
 	};
 }
+
+function sortPosts( keyword ) {
+  const regex = new RegExp( keyword, 'ig' );
+	
+  return this.posts.filter( item => {
+	 let i;
+     for( i = 0; i < item.keywords.length; i++ ) {
+       if( item.keywords[i].match( regex ) ) {
+		   return true;
+	   } 
+	 }	 
+	 
+	 return false;
+  });
+}
 	  
 class App extends React.Component {
 	componentDidMount() {
@@ -74,9 +90,13 @@ class App extends React.Component {
 		const { posts, match } = this.props;
 		const { user } = this.props.login;
 		const { isLoading } = this.props.loading;
+		const searchbar = document.querySelector( '.searchbar' )
 			
 		return (
 		  <div>
+		    <Searchbar el={ searchbar }
+			  sort={ sortPosts }/>
+		  
 		    <ul className='sidebar'>
 			
 			{ user && 

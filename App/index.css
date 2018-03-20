@@ -12,6 +12,8 @@ a:active, a:visited, a {
 	color: #222222;
 }
 
+/*---------------------- SIDEBAR STYLES ---------------------*/
+
 .sidebar {
 	position: fixed;
 	left: 10px;
@@ -42,6 +44,59 @@ a:active, a:visited, a {
 	  cursor: pointer;
 	  color: red;
   }
+  
+/* ---------------------- SEARCHBAR STYLES -------------------*/
+
+.searchbar {
+	z-index: 10;
+	position: fixed;
+	top: -70px;
+	right: 10vw;
+	transition: 0.5s ease-in;
+}
+  .searchbar.active {
+	  top: 0px;
+  }
+
+.searchbar-search {
+	height: 70px;
+	background-color: #fafafa;
+	width: 80vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.searchbar input {
+	width: 50vw;
+	height: 40px;
+	border: 2px solid purple;
+	border-radius: 5px;
+}
+
+.searchbar-suggestions {
+	background-color: #deadff;
+	width: 50vw;
+	
+}
+
+.searchbar-tab {
+	float: right;
+	background-color: purple;
+	color: #fafafa;
+	width: 20vw;
+	height: 50px;
+	border-radius: 0 0 8px 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+  .searchbar-tab:hover {
+	  cursor: pointer;
+  }
+  
+/* ------------------------ POST STYLES ----------------------*/
 
 .post {
 	float: right;

@@ -1,3 +1,8 @@
+/* AddPost component:
+   Its purpose is to dispatch an addPost action using data 
+   from form input fields.
+*/
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { generateId } from '../utils/API.js';
