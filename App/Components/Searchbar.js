@@ -5,6 +5,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { findMatch } from '../utils/API.js';
+import { Link } from 'react-router-dom';
 
 
 const LOAD_SUGGESTIONS = 'LOAD_SUGGESTIONS',
@@ -32,7 +33,9 @@ function Suggestions ( props ) {
 		 return (
            <li key={ item.id }
 		     className='searchbar-suggestion'>
+			 <Link to={ `/${ item.id }` }>
 			   { item.title }
+			 </Link>
 		   </li>
          );		 
 	  })}
@@ -50,10 +53,17 @@ class Searchbar extends React.Component {
   
   toggleSearch() {
 	  this.props.el.classList.toggle( 'active' );
+	  
+	  this.input.value = '';
+	  this.props.dispatch( resetSuggestions() );
   }
   
   handleChange() {
 	  const value = this.input.value;
+	  
+	  if( value === '' ) {
+		  return this.props.dispatch( resetSuggestions() );
+	  }
 	  
 	  const matches = findMatch( value, this.props.posts );
 	  console.log( matches );
@@ -68,6 +78,11 @@ class Searchbar extends React.Component {
     return (
 	<div className='searchbar'>
 	
+	  <div className='searchbar-tab'
+	    onClick={ this.toggleSearch } >
+	    Search
+	  </div>
+	
 	  <div className='searchbar-search'>
 	    <input type='text' 
 		  ref={( input ) => this.input = input }
@@ -76,14 +91,12 @@ class Searchbar extends React.Component {
 		
 		{/* Pass in the state.suggestions property to the Suggestions
 		component so that we can map over it */}
-		<Suggestions items={ this.props.suggestions }/>
+		<Suggestions items={ this.props.suggestions } 
+			{...this.props} 
+			toggle={ this.toggleSearch } />
 		
 	  </div>
 	
-	  <div className='searchbar-tab'
-	    onClick={ this.toggleSearch } >
-	    Searchbar
-	  </div>
 	  
 	</div>
 	);

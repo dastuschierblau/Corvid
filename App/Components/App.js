@@ -83,7 +83,7 @@ class App extends React.Component {
 		  <div>
 		  
 		  { !isLoading &&
-		    <Searchbar el={ searchbar } />
+		    <Searchbar el={ searchbar } {...this.props}/>
 		  }
 		  
 		    <ul className='sidebar'>

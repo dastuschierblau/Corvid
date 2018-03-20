@@ -9,13 +9,20 @@ function enableNewlines( str ) {
 }
 
 /* Relevant action creators */
-const TOGGLE_POST = 'TOGGLE_POST';
+const TOGGLE_POST = 'TOGGLE_POST',
+      RESET_SUGGESTIONS = 'RESET_SUGGESTIONS';
 	  
 function setCurrentPost( post ) {
 	return {
 		type: TOGGLE_POST,
 		post
 	};
+}
+
+function resetSuggestions() {
+	return {
+		type: RESET_SUGGESTIONS
+	}
 }
 	  
 class Post extends React.Component {
@@ -29,6 +36,8 @@ class Post extends React.Component {
   componentDidMount() {
 	  const { id } = this.props.match.params;
 		
+	  this.props.dispatch( resetSuggestions() );
+	
 	  this.setState(() => ({
 		  currentPost: id
 	  }));
@@ -84,5 +93,6 @@ class Post extends React.Component {
 }
 
 module.exports = connect(( state ) => ({
-  posts: state.posts
+  posts: state.posts,
+  suggestions: state.suggestions
 }))( Post );

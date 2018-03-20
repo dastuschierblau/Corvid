@@ -6,6 +6,9 @@ body, div, ul, li, a, h1, h2, h3, h4, p {
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont,
+	Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+	Helvetica, Neue, sans-serif;
 }
 
 a:active, a:visited, a {
@@ -50,26 +53,25 @@ a:active, a:visited, a {
 .searchbar {
 	z-index: 10;
 	position: fixed;
-	top: -70px;
-	right: 10vw;
+	right: -400px;
+	top: 0;
 	transition: 0.5s ease-in;
 }
   .searchbar.active {
-	  top: 0px;
+	  right: 0px;
   }
 
 .searchbar-search {
-	height: 70px;
+	height: 80vh;
 	background-color: #fafafa;
-	width: 80vw;
+	width: 400px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
 .searchbar input {
-	width: 50vw;
+	width: 350px;
 	height: 40px;
 	border: 2px solid purple;
 	border-radius: 5px;
@@ -77,24 +79,32 @@ a:active, a:visited, a {
 
 .searchbar-suggestions {
 	background-color: #deadff;
-	width: 50vw;
+	width: 350px;
+	position: absolute;
+	top: 46px;
 }
 
 .searchbar-suggestion {
-	height: 20px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	padding: 5px 10px;
 }
   .searchbar-suggestion:nth-child(even) {
 	  background-color: purple;
 	  color: #fafafa;
   }
+  .searchbar-suggestion a {
+	  color: inherit;
+  }
 
 .searchbar-tab {
-	float: right;
+	float: left;
 	background-color: purple;
 	color: #fafafa;
-	width: 20vw;
+	width: 80px;
 	height: 50px;
-	border-radius: 0 0 8px 8px;
+	border-radius: 8px 0 0 8px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
