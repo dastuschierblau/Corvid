@@ -80,13 +80,13 @@ class App extends React.Component {
 		const searchbar = document.querySelector( '.searchbar' )
 			
 		return (
-		  <div>
+		  <div className='container'>
 		  
 		  { !isLoading &&
 		    <Searchbar el={ searchbar } {...this.props}/>
 		  }
 		  
-		    <ul className='sidebar'>
+		    <section className='sidebar'>
 			
 			{ user && 
 			  <Link to='/'>
@@ -94,7 +94,9 @@ class App extends React.Component {
 			  </Link>
 			}
 			
-			{ isLoading && <h2>Loading...</h2> }
+			<ul className='sidebar-ul'>
+			
+			{ isLoading && <h3 className='sidebar-item'>Loading...</h3> }
 			
 		  { !isLoading && posts.map( item => {
 			 return <Link to={ `/${item.id}` }
@@ -113,6 +115,8 @@ class App extends React.Component {
 		  </Link>
 		  
 		    </ul>
+			
+		</section>
 			
 			<Switch>
 			

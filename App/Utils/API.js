@@ -31,6 +31,12 @@ export function findMatch(wordToFind, array){
   
 }
 
+export function prepareTags( str ) {
+	const regex = /,\s*/;
+	
+	return str.split( regex );
+}
+
 /* To be implemented later */
 function savePost( post ) {
 	return new Promise(( res, rej ) => {

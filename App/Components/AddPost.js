@@ -5,16 +5,17 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateId } from '../utils/API.js';
+import { generateId, prepareTags } from '../utils/API.js';
 
 const ADD_POST = 'ADD_POST';
 
-function addPost ({ title, content }) {
+function addPost ({ title, content, tags }) {
 	return {
 		type: ADD_POST,
 		post: {
 			title,
 			content,
+			keywords: tags,
 			id: generateId(),
 			current: false
 		}
@@ -28,9 +29,11 @@ class AddPost extends React.Component {
 	  this.state = {
 		title: null,
         content: null,
+		tags: null,
 		
         titleText: '',
-        contentText: ''		
+        contentText: '',
+        tagList: ''		
 	  };
 	  
 	  this.handleChange = this.handleChange.bind( this );
@@ -39,12 +42,14 @@ class AddPost extends React.Component {
   
   componentDidMount() {
 	  // Cache DOM elements for input and textarea fields
-	  const title = document.querySelector( '.add-post-title' );
+	  const title = document.querySelector( '#post-title' );
 	  const content = document.querySelector( '.add-post-content' );
+	  const tags = document.querySelector( '#post-tags' );
 	  
 	  this.setState(() => ({
 		  title,
-		  content
+		  content,
+		  tags
 	  }));
   }
   
@@ -53,9 +58,13 @@ class AddPost extends React.Component {
 	  const value = stateTarget.value;
 
 	  
-	  if( stateTarget.nodeName === 'INPUT' ) {
+	  if( stateTarget.id === 'post-title' ) {
 		  this.setState(() => ({
 			  titleText: value
+		  }));
+	  } else if ( stateTarget.id === 'post-tags' ) {
+		  this.setState(() => ({
+			  tagList: value
 		  }));
 	  } else {
 		  this.setState(() => ({
@@ -68,31 +77,60 @@ class AddPost extends React.Component {
 	  event.preventDefault();
 	  const title = this.state.title.value;
 	  const content = this.state.content.value;
+	  let tags = this.state.tags.value;
 	  
-	  this.props.dispatch( addPost( { title, content } ) );
+	  tags = prepareTags( tags );
+	  
+	  this.props.dispatch( addPost( { title, content, tags } ) );
 	  
 	  this.setState(() => ({
 		  titleText: '',
-		  contentText: ''
+		  contentText: '',
+		  tagList: ''
 	  }));
   }
 	
   render() {
     return (
+	  <div className='post-wrapper'>
+	  <h2 className='post-wrapper-header'>Add Post</h2>
 	  <div className='post'>
-	    <h2>Add Post</h2>
 		
 		<form className='add-post-form'>
 		
-		  <input className='add-post-title' type='text' 
+		<span className='add-post-input-wrapper'>
+		  <label 
+		    className='add-post-title-label'
+		    htmlFor='post-title'>
+		    Title:
+		  </label>
+		
+		  <input className='add-post-title' type='text'
+            id='post-title'		  
 		    onChange={ this.handleChange }
 			value={ this.state.titleText }
 			placeholder='Post title' autoFocus='true' />
+		</span>
+		
 		
 		  <textarea 
 		    onChange={ this.handleChange }
 			value={ this.state.contentText }
 			className='add-post-content'/>
+			
+		  <span className='add-post-input-wrapper'>
+		  <label 
+		    className='add-post-title-label'
+		    htmlFor='post-tags'>
+		    Tags:
+		  </label>
+		
+		  <input className='add-post-title' type='text'
+            id='post-tags'		  
+		    onChange={ this.handleChange }
+			value={ this.state.tagList }
+			placeholder='Enter tags seperated by commas' autoFocus='true' />
+		</span>
 		
 		  <button type='submit' className='add-post-submit'
 		    onClick={ this.handleSubmit } >
@@ -101,6 +139,7 @@ class AddPost extends React.Component {
 		  
 		</form>
 		
+	  </div>
 	  </div>
 	);
   }

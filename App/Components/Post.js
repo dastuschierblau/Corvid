@@ -58,6 +58,7 @@ class Post extends React.Component {
 	const { posts } = this.props;
 
     return (
+	  <div className='post-wrapper'>
 	  <div className='post'>
 	  
 		{ posts.filter(({ id }) => id === this.state.currentPost )
@@ -87,6 +88,7 @@ class Post extends React.Component {
 		  ))
 		}
 		  
+	  </div>
 	  </div>
 	);
   }

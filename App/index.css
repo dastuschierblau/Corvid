@@ -5,32 +5,52 @@ body, div, ul, li, a, h1, h2, h3, h4, p {
   padding: 0;
   text-decoration: none;
   list-style: none;
-  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont,
 	Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
 	Helvetica, Neue, sans-serif;
 }
 
+body * {
+	box-sizing: border-box;
+}
+
 a:active, a:visited, a {
 	color: #222222;
+	outline: none;
+}
+
+.container {
+	position: relative;
+	height: 100vh;
 }
 
 /*---------------------- SIDEBAR STYLES ---------------------*/
 
 .sidebar {
 	position: fixed;
-	left: 10px;
-	top: 10px;
-	bottom: 10px;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
 	width: 30vw;
-	background-color: yellow;
+}
+
+.sidebar-ul {
+
+}
+
+.sidebar h2 {
+	padding: 10px;
+	background-color: purple;
+	color: #fafafa;
 }
 
 .sidebar-item {
 	padding: 8px;
-	border: 1px solid #444444;
-	margin: 5px;
 }
+  .sidebar-item.active {
+	  background-color: #444444;
+	  color: yellow;
+  }
 
 .sidebar-item:hover {
 	cursor: pointer;
@@ -40,12 +60,12 @@ a:active, a:visited, a {
 
 .addPost {
 	position: absolute;
-	bottom: 5px;
-	left: 5px;
+	bottom: 10px;
+	left: 10px;
 }
   .addPost:hover {
 	  cursor: pointer;
-	  color: red;
+	  color: purple;
   }
   
 /* ---------------------- SEARCHBAR STYLES -------------------*/
@@ -68,6 +88,9 @@ a:active, a:visited, a {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	border-left: 1px solid purple;
+	border-bottom: 2px solid purple;
+	padding: 10px;
 }
 
 .searchbar input {
@@ -81,7 +104,7 @@ a:active, a:visited, a {
 	background-color: #deadff;
 	width: 350px;
 	position: absolute;
-	top: 46px;
+	top: 56px;
 }
 
 .searchbar-suggestion {
@@ -115,13 +138,20 @@ a:active, a:visited, a {
   
 /* ------------------------ POST STYLES ----------------------*/
 
+.post-wrapper {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 70vw;
+}
+
+.post-wrapper-header {
+	padding: 10px;
+	text-align: center;
+}
+
 .post {
-	float: right;
-	margin: 10px;
-	width: 65vw;
-	min-height: 90vh;
-	background-color: yellow;
-	position: relative;
 	padding: 15px;
 }
 
@@ -130,20 +160,62 @@ a:active, a:visited, a {
 .add-post-form {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 80vh;
+}
+
+.add-post-form > * {
+	padding: 10px;
+}
+
+.add-post-form > .add-post-title, .add-post-content {
+	font-size: 1.1em;
+	border: 1px solid purple;
+}
+
+.add-post-input-wrapper {
+	display: flex;
+	justify-content: center;
+	width: 80%;
 }
 
 .add-post-title {
-	width: 40%;
-	height: 20px;
+	height: 40px;
+	border: 1px solid purple;
+	flex: 4;
+	padding-left: 10px;
+}
+
+.add-post-title-label {
+	background-color: purple;
+	color: #fafafa;
+	height: 40px;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .add-post-content {
 	height: 40vh;
+	width: 80%;
 }
 
 .add-post-submit {
 	width: 40%;
+	height: 40px;
+	border-radius: 5px;
+	background-color: purple;
+	color: #fafafa;
+	border: none;
 }
+  .add-post-submit:hover {
+	  cursor: pointer;
+	  background-color: yellow;
+	  color: #222222;
+	  border: 1px solid #222222;
+  }
 
 /* --------------------- FOOTER STYLES ---------------------*/
 
