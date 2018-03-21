@@ -19,15 +19,32 @@ a:active, a:visited, a {
 	outline: none;
 }
 
+.container-wrapper {
+	
+}
+
+.nav {
+	height: 10vh;
+	background-color: #ffef42;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav h1 {
+	letter-spacing: 5px;
+	font-size: 1.5em;
+}
+
 .container {
 	position: relative;
-	height: 100vh;
+	height: 90vh;
 }
 
 /*---------------------- SIDEBAR STYLES ---------------------*/
 
 .sidebar {
-	position: fixed;
+	position: absolute;
 	left: 0px;
 	top: 0px;
 	bottom: 0px;
@@ -45,6 +62,7 @@ a:active, a:visited, a {
 }
 
 .sidebar-item {
+	border-bottom: 1px solid #deadff;
 	padding: 8px;
 }
   .sidebar-item.active {
@@ -90,6 +108,7 @@ a:active, a:visited, a {
 	flex-direction: column;
 	border-left: 1px solid purple;
 	border-bottom: 2px solid purple;
+	border-radius: 0 0 0 5px;
 	padding: 10px;
 }
 
@@ -152,8 +171,29 @@ a:active, a:visited, a {
 }
 
 .post {
-	padding: 15px;
+	padding: 25px;
 }
+
+  .tag-list {
+	  display: flex;
+	  flex-wrap: wrap;
+	  position: absolute;
+	  bottom: 40px;
+	  left: 0;
+	  right: 0;
+  }
+  
+  .tag-list li {
+	  background-color: purple;
+	  color: #fafafa;
+	  width: 100px;
+	  height: 40px;
+	  border-radius: 10px;
+	  margin: 10px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+  }
 
 /* ------------------- POST FORM STYLES --------------------*/
 
@@ -163,10 +203,6 @@ a:active, a:visited, a {
 	justify-content: space-around;
 	align-items: center;
 	height: 80vh;
-}
-
-.add-post-form > * {
-	padding: 10px;
 }
 
 .add-post-form > .add-post-title, .add-post-content {
@@ -200,6 +236,7 @@ a:active, a:visited, a {
 .add-post-content {
 	height: 40vh;
 	width: 80%;
+	padding: 10px;
 }
 
 .add-post-submit {
@@ -216,6 +253,7 @@ a:active, a:visited, a {
 	  color: #222222;
 	  border: 1px solid #222222;
   }
+  
 
 /* --------------------- FOOTER STYLES ---------------------*/
 

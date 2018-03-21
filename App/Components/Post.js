@@ -1,6 +1,9 @@
 const React = require( 'react' ),
       { Redirect } = require( 'react-router-dom' ),
+	  { formatDate } = require( '../utils/helpers.js' ),
       { connect } = require( 'react-redux' );
+	  
+import { setCurrentPost, resetSuggestions } from '../Actions/shared.js';
 	  
 /* Util function implementing newlines found inside of strings. */
 function enableNewlines( str ) {
@@ -8,22 +11,6 @@ function enableNewlines( str ) {
 	   .map( ( item, index ) => <p key={ index }>{ item }</p>);
 }
 
-/* Relevant action creators */
-const TOGGLE_POST = 'TOGGLE_POST',
-      RESET_SUGGESTIONS = 'RESET_SUGGESTIONS';
-	  
-function setCurrentPost( post ) {
-	return {
-		type: TOGGLE_POST,
-		post
-	};
-}
-
-function resetSuggestions() {
-	return {
-		type: RESET_SUGGESTIONS
-	}
-}
 	  
 class Post extends React.Component {
   constructor( props ) {
@@ -69,11 +56,17 @@ class Post extends React.Component {
 		      <h1>{item.title}</h1> 
 			  { enableNewlines( item.content ) }
 			  
+			  <ul className='tag-list'>
+			  { item.keywords.map( item => {
+				  return <li key={item}>{ item }</li>
+			  }) }
+			  </ul>
+			  
 			  <footer>
 			  
 			    <ul className='footer-left'>
 			      <li>{ item.author }</li>
-				  <li>{ item.timestamp }</li>
+				  <li>{ formatDate( item.timestamp ) }</li>
 				</ul>
 				
 				<ul className='footer-right'>

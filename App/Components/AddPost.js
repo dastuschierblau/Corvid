@@ -5,23 +5,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateId, prepareTags } from '../utils/API.js';
+import { generateId, prepareTags } from '../utils/helpers.js';
+import { addPost } from '../Actions/shared.js';
 
-const ADD_POST = 'ADD_POST';
-
-function addPost ({ title, content, tags }) {
-	return {
-		type: ADD_POST,
-		post: {
-			title,
-			content,
-			keywords: tags,
-			id: generateId(),
-			current: false
-		}
-		
-	};
-}
 
 class AddPost extends React.Component {
   constructor( props ) {
@@ -79,6 +65,11 @@ class AddPost extends React.Component {
 	  const content = this.state.content.value;
 	  let tags = this.state.tags.value;
 	  
+	  if( !title || !content || !tags ) {
+		  alert( 'Please fill in all of the fields!' );
+		  return;
+	  }
+	  
 	  tags = prepareTags( tags );
 	  
 	  this.props.dispatch( addPost( { title, content, tags } ) );
@@ -130,7 +121,7 @@ class AddPost extends React.Component {
 		    onChange={ this.handleChange }
 			value={ this.state.tagList }
 			placeholder='Enter tags seperated by commas' autoFocus='true' />
-		</span>
+		  </span>
 		
 		  <button type='submit' className='add-post-submit'
 		    onClick={ this.handleSubmit } >

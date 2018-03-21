@@ -5,64 +5,8 @@ import Post from './Post.js';
 import AddPost from './AddPost.js';
 import Searchbar from './Searchbar.js';
 	  
+import { login, toggleLoading, addPost, removePost, receivePosts, handleReceivePosts } from '../Actions/shared.js';
 import { getInitialData } from '../utils/API.js';
-
-import { _getPosts } from '../utils/mockData.js';
-	  //addPost = require( '../Actions/shared.js' );
-	  
-const ADD_POST = 'ADD_POST',
-      REMOVE_POST = 'REMOVE_POST',
-	  RECEIVE_POSTS = 'RECEIVE_POSTS',
-	  TOGGLE_LOADING = 'TOGGLE_LOADING',
-	  USER_LOGIN = 'USER_LOGIN';
-	  
-function login ( user ) {
-	return {
-		type: USER_LOGIN,
-		username: user
-	};
-}
-
-function toggleLoading () {
-	return {
-		type: TOGGLE_LOADING,
-	};
-}
-	  
-function addPost ( post ) {
-	return {
-		type: ADD_POST,
-		current: false,
-		post
-	};
-}
-
-function removePost ( id ) {
-	return {
-		type: REMOVE_POST,
-		id
-	};
-}
-
-function receivePosts ( posts ) {
-	return {
-		type: RECEIVE_POSTS,
-		posts
-	};
-}
-
-function handleReceivePosts() {
-	return ( dispatch ) => {
-		dispatch( toggleLoading() );
-		_getPosts()
-		  .then( posts => {
-			 dispatch( toggleLoading() );
-			 dispatch( receivePosts( posts ) ); 
-		  })
-		  .catch(( err ) => console.err( err ) );
-	};
-}
-
 
 	  
 class App extends React.Component {
@@ -70,7 +14,6 @@ class App extends React.Component {
 		this.props.dispatch( login( 'Emmett' ) );
 	
         this.props.dispatch( handleReceivePosts() );
-		
 	}
 	
 	render() {
@@ -80,6 +23,12 @@ class App extends React.Component {
 		const searchbar = document.querySelector( '.searchbar' )
 			
 		return (
+		  <div className='container-wrapper'>
+		  
+		  <nav className='nav'>
+		    <h1>CORVID</h1>
+		  </nav>
+		
 		  <div className='container'>
 		  
 		  { !isLoading &&
@@ -122,8 +71,10 @@ class App extends React.Component {
 			
 			  <Route exact path='/' render={() => {
 				 return (
-				  <div className='post'>
-				    <h1>Welcome</h1>
+				  <div className='post-wrapper'>
+				    <div className='post'>
+				      <h1>Welcome</h1>
+				    </div>
 				  </div>
 				 );
 			  }} />
@@ -138,6 +89,8 @@ class App extends React.Component {
 			  
 			</Switch>
 			
+		  </div>
+		  
 		  </div>
 		);
 	}

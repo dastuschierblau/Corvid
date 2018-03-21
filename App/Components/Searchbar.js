@@ -4,25 +4,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { findMatch } from '../utils/API.js';
+import { findMatch } from '../utils/helpers.js';
 import { Link } from 'react-router-dom';
 
-
-const LOAD_SUGGESTIONS = 'LOAD_SUGGESTIONS',
-      RESET_SUGGESTIONS = 'RESET_SUGGESTIONS';
-
-function loadSuggestions( suggestions ) {
-	return {
-		type: LOAD_SUGGESTIONS,
-		suggestions
-	};
-}
-
-function resetSuggestions() {
-	return {
-		type: RESET_SUGGESTIONS
-	}
-}
+import { loadSuggestions, resetSuggestions } from '../Actions/shared.js';
 
 
 function Suggestions ( props ) {

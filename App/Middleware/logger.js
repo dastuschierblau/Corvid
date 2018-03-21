@@ -1,6 +1,6 @@
 /* logger middleware */
 
-const logger = ( store ) => ( next ) => ( action ) => {
+export const logger = ( store ) => ( next ) => ( action ) => {
   console.group( action.type );
   console.log( 'The action: ', action );
   const result = next( action );
@@ -9,7 +9,3 @@ const logger = ( store ) => ( next ) => ( action ) => {
   
   return result;
 };
-
-module.exports = {
-  logger
-}

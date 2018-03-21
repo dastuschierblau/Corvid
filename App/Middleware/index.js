@@ -1,7 +1,5 @@
-const logger = require( './logger.js' );
-const thunk = require( 'redux-thunk' );
-const { applyMiddleware } = require( 'redux' );
+import logger from './logger.js';
+import thunk from 'redux-thunk';
+import { applyMiddleware } from 'redux';
 
-module.exports = {
-	middleware: applyMiddleware( thunk, logger )
-};
+export applyMiddleware( thunk, logger )

@@ -9,7 +9,7 @@ const posts = [
 	  'html5', 'elements', 'html', 'javascript'
 	],
 	author: 'Emmett Slack',
-	timestamp: 1521319841696,
+	timestamp: new Date( 2018, 2, 13, 14, 14 ),
 	current: false,
 	content: `Some cool HTML5 elements include <audio>, <video>, and <progress>.`
   },
@@ -21,7 +21,7 @@ const posts = [
 	  'functions', 'javascript'
 	],
 	author: 'Emmett Slack',
-	timestamp: 1521319871672,
+	timestamp: new Date( 2018, 2, 15, 12, 10 ),
 	current: false,
 	content: `We can return functions from action creators instead of objects, but in order to enable this behavior, we need a specific type of middleware called a thunk.`
   },
@@ -34,7 +34,7 @@ const posts = [
 	  'javascript'
 	],
 	author: 'Emmett Slack',
-	timestamp: 1521319892788,
+	timestamp: new Date( 2018, 2, 15, 18, 6 ),
 	current: false,
 	content: `React Router v4 represents a shift toward a more declarative ideology- Routes are now just like any other component and can be used anywhere in your application. You can even have Routes within other Routes, recursive Routes, etc.
 	  Prior to v4, React Router required you to have a central route configuration in the form of an array or object. While you can still utilize this method with React Router v4, it is no longer a necessity to do so. \n The new declarative components usable with React Router include the Redirect component, which allows you to programmatically redirect a user- for example, redirection away from protected routes in situations where the user is not authenticated.`
