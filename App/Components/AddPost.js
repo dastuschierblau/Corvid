@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateId, prepareTags } from '../utils/helpers.js';
+import { prepareTags } from '../utils/helpers.js';
 import { addPost } from '../Actions/shared.js';
 
 

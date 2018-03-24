@@ -41,6 +41,29 @@ a:active, a:visited, a {
 	height: 90vh;
 }
 
+.initial-greeting {
+	position: absolute;
+	top: 40vh;
+	left: 45vw;
+}
+
+.login-btn {
+	border: none;
+	background-color: #222222;
+	color: #fafafa;
+	width: 10vw;
+	height: 10vh;
+	
+    position: absolute;
+	left: 0;
+}
+  .login-btn:hover {
+	  background-color: #ffef42;;
+	  border: 1px solid #222222;
+	  cursor: pointer;
+	  color: #222222;
+  }
+
 /*---------------------- SIDEBAR STYLES ---------------------*/
 
 .sidebar {
@@ -49,10 +72,12 @@ a:active, a:visited, a {
 	top: 0px;
 	bottom: 0px;
 	width: 30vw;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar-ul {
-
+  width: 100%;
 }
 
 .sidebar h2 {
@@ -172,6 +197,10 @@ a:active, a:visited, a {
 
 .post {
 	padding: 25px;
+}
+
+.post p {
+	padding: 10px 0;
 }
 
   .tag-list {

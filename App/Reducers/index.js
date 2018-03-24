@@ -1,17 +1,22 @@
 /* Index reducers file */
 const RECEIVE_POSTS = 'RECEIVE_POSTS',
+      EMPTY_POSTS = 'EMPTY_POSTS',
       ADD_POST = 'ADD_POST',
 	  TOGGLE_POST = 'SET_POST',
 	  TOGGLE_LOADING = 'TOGGLE_LOADING',
 	  REMOVE_POST = 'REMOVE_POST',
 	  LOAD_SUGGESTIONS = 'LOAD_SUGGESTIONS',
 	  RESET_SUGGESTIONS = 'RESET_SUGGESTIONS',
+	  USER_LOGOUT = 'USER_LOGOUT',
 	  USER_LOGIN = 'USER_LOGIN';
 
 export function posts ( state = [], action ) {
   switch( action.type ) {
     case RECEIVE_POSTS:
 	  return state.concat( ...action.posts );
+	  
+	case EMPTY_POSTS:
+	  return state.filter( item => false );
 	  
 	case ADD_POST:
 	  return state.concat([ action.post ]);
@@ -31,6 +36,8 @@ export function userAuth ( state = {}, action ) {
 	switch( action.type ) {
 		case USER_LOGIN:
 		  return Object.assign( {}, state.userAuth, { user: action.username, logged: true } );
+		case USER_LOGOUT:
+		  return Object.assign( {}, state.userAuth, { user: null, logged: false } );
 		default:
 		  return state;
 	}

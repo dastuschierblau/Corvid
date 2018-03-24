@@ -70,8 +70,8 @@ class Post extends React.Component {
 				</ul>
 				
 				<ul className='footer-right'>
-				  <li>Edit</li>
-				  <li>Remove</li>
+				  <li>{/*Edit*/}</li>
+				  <li>{/*Remove*/}</li>
 				</ul>
 				
 			  </footer>
