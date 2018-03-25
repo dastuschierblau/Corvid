@@ -4,6 +4,8 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Post from './Post.js';
 import AddPost from './AddPost.js';
 import Searchbar from './Searchbar.js';
+import Homepage from './Homepage.js';
+import Sidebar from './Sidebar.js';
 	  
 import { login, logout, toggleLoading, addPost, removePost, receivePosts, emptyPosts, handleReceivePosts } from '../Actions/shared.js';
 import { getInitialData } from '../utils/API.js';
@@ -38,7 +40,7 @@ class App extends React.Component {
 		const { posts, match } = this.props;
 		const { user } = this.props.login;
 		const { isLoading } = this.props.loading;
-		const searchbar = document.querySelector( '.searchbar' )
+		const searchbar = document.querySelector( '.searchbar' );
 			
 		return (
 		  <div className='container-wrapper'>
@@ -67,40 +69,9 @@ class App extends React.Component {
 		  }
 		  
 		  
-		    <section className='sidebar'>
-			
-			
-			{ user && 
-			  <Link to='/'>
-			  <h2>Welcome, { user }!</h2> 
-			  </Link>
-			}
-			
-			<ul className='sidebar-ul'>
-			
-			{ isLoading && <h3 className='sidebar-item'>Loading...</h3> }
-			
-		  { !isLoading && posts.map( item => {
-			 return <Link to={ `/${item.id}` }
-				 key={ item.id }>
-			   <li
-			     className='sidebar-item'>
-				  { item.title }
-               </li>
-            </Link>			   
-		  })}
-		  
-		  { user && !isLoading &&
-		  <Link to='/addPost'>
-		    <li className='addPost'>
-		      Add Post
-		    </li>
-		  </Link>
-		  }
-		  
-		    </ul>
-			
-		</section>
+		  {/* Sidebar component */}
+		  <Sidebar />
+		
 			
 			<Switch>
 			
@@ -112,13 +83,7 @@ class App extends React.Component {
 			}
 			
 			{ user && <Route exact path='/' render={() => {
-				 return (
-				   <div className='post-wrapper'>
-				     <div className='post'>
-					   <h1>Welcome</h1>
-					 </div>
-				   </div>
-				 );
+				 return <Homepage />;
 			  }} />
 			}
 			  

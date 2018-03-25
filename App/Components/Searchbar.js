@@ -51,7 +51,7 @@ class Searchbar extends React.Component {
 	  }
 	  
 	  const matches = findMatch( value, this.props.posts );
-	  console.log( matches );
+
 	  // Dispatch an action to create a suggestions property
 	  // in the state
 	  this.props.dispatch( resetSuggestions() );
