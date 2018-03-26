@@ -104,11 +104,11 @@ class App extends React.Component {
 	}
 }
 
-function mapStateToProps ( state ) {
+function mapStateToProps ({ posts, loading, userAuth }) {
 	return {
-		posts: state.posts,
-		login: state.userAuth,
-		loading: state.loading
+		posts,
+		login: userAuth,
+		loading
 	};
 }
 

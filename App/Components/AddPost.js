@@ -13,57 +13,29 @@ class AddPost extends React.Component {
   constructor( props ) {
 	  super( props );
 	  this.state = {
-		title: null,
-        content: null,
-		tags: null,
-		
-        titleText: '',
-        contentText: '',
-        tagList: ''		
+        title: '',
+        content: '',
+        tags: ''		
 	  };
 	  
 	  this.handleChange = this.handleChange.bind( this );
 	  this.handleSubmit = this.handleSubmit.bind( this );
   }
   
-  componentDidMount() {
-	  // Cache DOM elements for input and textarea fields
-	  const title = document.querySelector( '#post-title' );
-	  const content = document.querySelector( '.add-post-content' );
-	  const tags = document.querySelector( '#post-tags' );
-	  
-	  this.setState(() => ({
-		  title,
-		  content,
-		  tags
-	  }));
-  }
-  
   handleChange( e ) {
 	  const stateTarget = e.target;
-	  const value = stateTarget.value;
+	  const { value, name } = stateTarget;
 
-	  
-	  if( stateTarget.id === 'post-title' ) {
-		  this.setState(() => ({
-			  titleText: value
-		  }));
-	  } else if ( stateTarget.id === 'post-tags' ) {
-		  this.setState(() => ({
-			  tagList: value
-		  }));
-	  } else {
-		  this.setState(() => ({
-			  contentText: value
-		  }));
-	  }
+	  this.setState(() => ({
+		  [ name ]: value
+	  }));
+	 
   }
   
   handleSubmit( event ) {
 	  event.preventDefault();
-	  const title = this.state.title.value;
-	  const content = this.state.content.value;
-	  let tags = this.state.tags.value;
+	  const { title, content } = this.state;
+	  let { tags } = this.state;
 	  
 	  if( !title || !content || !tags ) {
 		  alert( 'Please fill in all of the fields!' );
@@ -75,19 +47,21 @@ class AddPost extends React.Component {
 	  this.props.dispatch( addPost( { title, content, tags } ) );
 	  
 	  this.setState(() => ({
-		  titleText: '',
-		  contentText: '',
-		  tagList: ''
+		  title: '',
+		  content: '',
+		  tags: ''
 	  }));
   }
 	
   render() {
+	const { title, content, tags } = this.state;
+	  
     return (
 	  <div className='post-wrapper'>
 	  <h2 className='post-wrapper-header'>Add Post</h2>
 	  <div className='post'>
 		
-		<form className='add-post-form'>
+		<form className='add-post-form' onSubmit={ this.handleSubmit }>
 		
 		<span className='add-post-input-wrapper'>
 		  <label 
@@ -98,15 +72,17 @@ class AddPost extends React.Component {
 		
 		  <input className='add-post-title' type='text'
             id='post-title'		  
+			name='title'
 		    onChange={ this.handleChange }
-			value={ this.state.titleText }
+			value={ title }
 			placeholder='Post title' autoFocus='true' />
 		</span>
 		
 		
 		  <textarea 
 		    onChange={ this.handleChange }
-			value={ this.state.contentText }
+			value={ content }
+			name='content'
 			className='add-post-content'/>
 			
 		  <span className='add-post-input-wrapper'>
@@ -118,13 +94,13 @@ class AddPost extends React.Component {
 		
 		  <input className='add-post-title' type='text'
             id='post-tags'		  
+			name='tags'
 		    onChange={ this.handleChange }
-			value={ this.state.tagList }
+			value={ tags }
 			placeholder='Enter tags seperated by commas' autoFocus='true' />
 		  </span>
 		
-		  <button type='submit' className='add-post-submit'
-		    onClick={ this.handleSubmit } >
+		  <button type='submit' className='add-post-submit'>
 		    Save Post
 		  </button>
 		  
