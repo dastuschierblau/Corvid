@@ -89,7 +89,7 @@ class App extends React.Component {
 			  
 			  <Route path='/addPost' component={ AddPost } />
 			  
-			  <Route path='/:id' render={( props ) => {
+			  <Route path='/:postId' render={( props ) => {
 			    return <Post {...props} />
 			  }} />
 			  

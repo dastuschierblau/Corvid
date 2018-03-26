@@ -13,51 +13,30 @@ function enableNewlines( str ) {
 
 	  
 class Post extends React.Component {
-  constructor( props ) {
-	  super( props );
-	  this.state = {
-		currentPost: null  
-	  };
-  }
 	
-  componentDidMount() {
-	  const { id } = this.props.match.params;
-		
+  componentDidMount() {	
 	  this.props.dispatch( resetSuggestions() );
-	
-	  this.setState(() => ({
-		  currentPost: id
-	  }));
-
   }
   
-  componentWillReceiveProps( nextProps ) {
-	  const { id } = nextProps.match.params;
-	  
-	  if( nextProps.location.pathname !== this.props.location.pathname ) {
-		  this.setState(() => ({
-			  currentPost: id
-		  }));
-	  }
-  }
 	
   render() {
-	const { posts } = this.props;
+	const { currentPost } = this.props;
+	
+	if( !currentPost ) {
+		return <Redirect to='/' />;
+	}
 
     return (
 	  <div className='post-wrapper'>
 	  <div className='post'>
-	  
-		{ posts.filter(({ id }) => id === this.state.currentPost )
-		  .map( item => (
-		  
-		    <div key={ item.id }>
+	    
+		    <div key>
 			
-		      <h1>{item.title}</h1> 
-			  { enableNewlines( item.content ) }
+		      <h1>{currentPost.title}</h1> 
+			  { enableNewlines( currentPost.content ) }
 			  
 			  <ul className='tag-list'>
-			  { item.keywords.map( item => {
+			  { currentPost.keywords.map( item => {
 				  return <li key={item}>{ item }</li>
 			  }) }
 			  </ul>
@@ -65,8 +44,8 @@ class Post extends React.Component {
 			  <footer>
 			  
 			    <ul className='footer-left'>
-			      <li>{ item.author }</li>
-				  <li>{ formatDate( item.timestamp ) }</li>
+			      <li>{ currentPost.author }</li>
+				  <li>{ formatDate( currentPost.timestamp ) }</li>
 				</ul>
 				
 				<ul className='footer-right'>
@@ -77,9 +56,6 @@ class Post extends React.Component {
 			  </footer>
 			  
 		    </div>
-			
-		  ))
-		}
 		  
 	  </div>
 	  </div>
@@ -87,7 +63,23 @@ class Post extends React.Component {
   }
 }
 
-module.exports = connect(( state ) => ({
-  posts: state.posts,
-  suggestions: state.suggestions
-}))( Post );
+function mapStateToProps({ posts, suggestions }, { match }) {
+	const { postId } = match.params;
+	const post = posts.filter(({ id }) => {
+		return id === postId;
+	});
+	
+	if( !post ) {
+		return {
+		  currentPost: null
+		};
+	}
+	
+	return {
+		currentPost: post[0],
+		posts,
+		suggestions
+	};
+}
+
+module.exports = connect( mapStateToProps )( Post );
