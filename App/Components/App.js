@@ -6,6 +6,7 @@ import AddPost from './AddPost.js';
 import Searchbar from './Searchbar.js';
 import Homepage from './Homepage.js';
 import Sidebar from './Sidebar.js';
+import Login from './Login.js';
 	  
 import { login, logout, toggleLoading, addPost, removePost, receivePosts, emptyPosts, handleReceivePosts } from '../Actions/shared.js';
 import { getInitialData } from '../utils/API.js';
@@ -15,15 +16,8 @@ import { getInitialData } from '../utils/API.js';
 class App extends React.Component {
 	constructor( props ) {
 		super( props );
-		
-		this.login = this.login.bind( this );
+
 		this.logout = this.logout.bind( this );
-	}
-	
-	login() {
-		this.props.dispatch( login( 'Emmett' ) );
-	
-        this.props.dispatch( handleReceivePosts() );
 	}
 	
 	logout() {
@@ -46,11 +40,6 @@ class App extends React.Component {
 		  <div className='container-wrapper'>
 		  
 		  <nav className='nav'>
-		    { !user &&
-			  <button className='login-btn' onClick={ this.login }>
-			    Login
-			  </button>
-			}
 			
 			{ user &&
 			  <button className='login-btn' onClick={ this.logout }>
@@ -60,6 +49,8 @@ class App extends React.Component {
 		  
 		    <h1>CORVID</h1>
 		  </nav>
+		  
+		  <Login />
 		
 		  <div className='container'>
 		  

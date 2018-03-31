@@ -36,6 +36,7 @@ class AddPost extends React.Component {
 	  event.preventDefault();
 	  const { title, content } = this.state;
 	  let { tags } = this.state;
+	  const author = this.props.user;
 	  
 	  if( !title || !content || !tags ) {
 		  alert( 'Please fill in all of the fields!' );
@@ -44,7 +45,7 @@ class AddPost extends React.Component {
 	  
 	  tags = prepareTags( tags );
 	  
-	  this.props.dispatch( addPost( { title, content, tags } ) );
+	  this.props.dispatch( addPost( { title, content, tags, author } ) );
 	  
 	  this.setState(() => ({
 		  title: '',
@@ -112,6 +113,6 @@ class AddPost extends React.Component {
   }
 }
 
-export default connect(( state ) => ({
-	state
+export default connect(({ userAuth }) => ({
+	user: userAuth.user
 }))( AddPost );

@@ -32,7 +32,7 @@ export function toggleLoading () {
 	};
 }
 	  
-export function addPost ({ title, content, tags }) {
+export function addPost ({ title, content, tags, author }) {
 	return {
 		type: ADD_POST,
 		post: {
@@ -41,7 +41,7 @@ export function addPost ({ title, content, tags }) {
 			keywords: tags,
 			timestamp: new Date(),
 			id: generateId(),
-			current: false
+			author
 		}
 		
 	};

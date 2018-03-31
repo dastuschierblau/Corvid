@@ -3,7 +3,7 @@ const React = require( 'react' ),
 	  { formatDate } = require( '../utils/helpers.js' ),
       { connect } = require( 'react-redux' );
 	  
-import { setCurrentPost, resetSuggestions } from '../Actions/shared.js';
+import { setCurrentPost, resetSuggestions, removePost } from '../Actions/shared.js';
 	  
 /* Util function implementing newlines found inside of strings. */
 function enableNewlines( str ) {
@@ -13,11 +13,23 @@ function enableNewlines( str ) {
 
 	  
 class Post extends React.Component {
+  constructor( props ) {
+	  super( props );
+	  this.handleDelete = this.handleDelete.bind( this );
+  }
 	
   componentDidMount() {	
 	  this.props.dispatch( resetSuggestions() );
   }
   
+  handleDelete() {
+	  const { id } = this.props.currentPost;
+	  let okToDelete = confirm( 'Are you sure you want to delete this post?' )
+	  
+	  if( okToDelete ) {
+	    this.props.dispatch( removePost( id ) );
+	  }
+  }
 	
   render() {
 	const { currentPost } = this.props;
@@ -31,6 +43,11 @@ class Post extends React.Component {
 	  <div className='post'>
 	    
 		    <div key>
+			
+			  <img className='delete-icon'
+			    src={ require( '../Images/trashbin.svg' ) }
+			  onClick={ this.handleDelete } />
+			 
 			
 		      <h1>{currentPost.title}</h1> 
 			  { enableNewlines( currentPost.content ) }

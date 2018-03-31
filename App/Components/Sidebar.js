@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
 			
 			<ul className='sidebar-ul'>
 			
-			{ isLoading && <h3 className='sidebar-item'>Loading...</h3> }
+			{ isLoading && <h3>Loading...</h3> }
 			
 		  { !isLoading && posts.map( item => {
 			 return <Link to={ `/${item.id}` }
