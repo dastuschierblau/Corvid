@@ -46,7 +46,8 @@ class Post extends React.Component {
 			
 			  <img className='delete-icon'
 			    src={ require( '../Images/trashbin.svg' ) }
-			  onClick={ this.handleDelete } />
+			  onClick={ this.handleDelete } 
+			  alt='Trash can icon'/>
 			 
 			
 		      <h1>{currentPost.title}</h1> 

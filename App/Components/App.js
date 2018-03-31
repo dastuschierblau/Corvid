@@ -68,7 +68,13 @@ class App extends React.Component {
 			
 			{ !user && <Route exact path='/' render={() => {
 				return (
-				  <h1 className='initial-greeting'>Please log in</h1>
+				  <span class='landing-page-wrapper'>
+				  <div className='overlay'>
+				  </div>
+				  <div className='landing-page'>
+				    <h1 className='initial-greeting'>Please log in</h1>
+				  </div>
+				  </span>
 				);
 			  }} />
 			}
