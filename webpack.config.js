@@ -18,12 +18,6 @@ let config = {
 			loader: 'file-loader',
 			options: {}
 		}
-	] },
-	{ test: /\.(jpe?g|png|gif|svg)$/i, use: [
-		{
-			loader: 'file-loader',
-			options: {}
-		}
 	] }
     ]
 	
