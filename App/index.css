@@ -177,6 +177,13 @@ a {
   display: block;
 }
 
+.toggle-posts {
+  background-color: black;
+  color: yellow;
+  display: flex;
+  justify-content: space-between;
+}
+
 .addPost {
 }
 .addPost:hover {
