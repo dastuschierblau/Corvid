@@ -1,140 +1,150 @@
 /* Main CSS styles */
 
-body, div, ul, li, a, h1, h2, h3, h4, p {
+body,
+div,
+ul,
+li,
+a,
+h1,
+h2,
+h3,
+h4,
+p {
   margin: 0;
   padding: 0;
   text-decoration: none;
   list-style: none;
-  font-family: -apple-system, BlinkMacSystemFont,
-	Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-	Helvetica, Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
+    Ubuntu, Cantarell, Helvetica, Neue, sans-serif;
 }
 
 body * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-a:active, a:visited, a {
-	color: #222222;
-	outline: none;
+a:active,
+a:visited,
+a {
+  color: #222222;
+  outline: none;
 }
 
 .container-wrapper {
-	position: relative;
+  position: relative;
 }
 
 .nav {
-	height: 10vh;
-	background-color: #ffef42;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 10; 
+  height: 10vh;
+  background-color: #ffef42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
 .nav h1 {
-	letter-spacing: 5px;
-	font-size: 1.5em;
+  letter-spacing: 5px;
+  font-size: 1.5em;
 }
 
 /*---------------- LOGIN STYLES -----------------*/
 
 .login {
-	position: absolute;
-	width: 100%;
-	transition: 0.5s ease;
-	z-index: 8;
-	height: 80px;
+  position: absolute;
+  width: 100%;
+  transition: 0.5s ease;
+  z-index: 8;
+  height: 80px;
 }
 
 .login.disabled {
-	height: 0px;
+  height: 0px;
 }
 
 .login.disabled input {
-	display: none;
+  display: none;
 }
 
 .login-form {
-	display: flex;
-    align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: inherit;
 }
 
 .login-form input {
-	min-width: 50%;
-	height: 40px;
-	border: 4px solid #222222;
-	padding: 0 10px;
-	border-radius: 8px;
+  min-width: 50%;
+  height: 40px;
+  border: 4px solid #222222;
+  padding: 0 10px;
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 900px) {
-	.login-form input {
-		width: 80%;
-	}
+  .login-form input {
+    width: 80%;
+  }
 }
 
 .container {
-	position: relative;
-	height: 90vh;
+  position: relative;
+  height: 90vh;
 }
 
 .overlay {
-	background: linear-gradient(to bottom, #222222, purple);
-	opacity: 0.5;
-	width: 100vw;
-	height: 90vh;
-	position: absolute;
+  background: linear-gradient(to bottom, #222222, purple);
+  opacity: 0.5;
+  width: 100vw;
+  height: 90vh;
+  position: absolute;
 }
 
 .landing-page {
-	background-image: url('./Images/animal-avian-bird-953150.jpg');
-	background-size: cover;
-	background-position: center bottom;
-	width: 100vw;
-	height: 90vh;
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  background-image: url("./Images/animal-avian-bird-953150.jpg");
+  background-size: cover;
+  background-position: center bottom;
+  width: 100vw;
+  height: 90vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .initial-greeting {
-	color: #fafafa;
-	z-index: 40;
-	letter-spacing: 5px;
+  color: #fafafa;
+  z-index: 40;
+  letter-spacing: 5px;
 }
 
 .login-btn {
-	border: none;
-	background-color: #222222;
-	color: #fafafa;
-	width: 10vw;
-	height: 10vh;
-	
-    position: absolute;
-	left: 0;
+  border: none;
+  background-color: #222222;
+  color: #fafafa;
+  width: 10vw;
+  height: 10vh;
+
+  position: absolute;
+  left: 0;
 }
-  .login-btn:hover {
-	  background-color: #ffef42;;
-	  border: 1px solid #222222;
-	  cursor: pointer;
-	  color: #222222;
-  }
+.login-btn:hover {
+  background-color: #ffef42;
+  border: 1px solid #222222;
+  cursor: pointer;
+  color: #222222;
+}
 
 /*---------------------- SIDEBAR STYLES ---------------------*/
 
 .sidebar {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	bottom: 0px;
-	width: 30vw;
-	display: flex;
-	flex-direction: column;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-ul {
@@ -143,248 +153,269 @@ a:active, a:visited, a {
 }
 
 .sidebar h2 {
-	padding: 10px;
-	background-color: purple;
-	color: #fafafa;
+  padding: 10px;
+  background-color: purple;
+  color: #fafafa;
 }
 
 .sidebar-item {
-	border-bottom: 1px solid #aaaaaa;
-	padding: 8px;
+  border-bottom: 1px solid #aaaaaa;
+  padding: 8px;
+  width: 100%;
 }
-  .sidebar-item.active {
-	  background-color: #444444;
-	  color: yellow;
-  }
 
 .sidebar-item:hover {
-	cursor: pointer;
-	background-color: #111111;
-	color: yellow;
+  cursor: pointer;
+  background-color: #111111;
+  color: yellow;
+}
+
+.sidebar-post {
+  display: none;
+}
+.sidebar-post.active {
+  display: block;
 }
 
 .addPost {
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
 }
-  .addPost:hover {
-	  cursor: pointer;
-	  color: purple;
-  }
-  
+.addPost:hover {
+  cursor: pointer;
+  background-color: purple;
+}
+
 /* ---------------------- SEARCHBAR STYLES -------------------*/
 
 .searchbar {
-	z-index: 10;
-	position: fixed;
-	right: -400px;
-	top: 0;
-	transition: 0.5s ease-in;
+  z-index: 10;
+  position: fixed;
+  right: -400px;
+  top: 0;
+  transition: 0.5s ease-in;
 }
-  .searchbar.active {
-	  right: 0px;
-  }
+.searchbar.active {
+  right: 0px;
+}
 
 .searchbar-search {
-	height: 80vh;
-	background-color: #fafafa;
-	width: 400px;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	border-left: 1px solid purple;
-	border-bottom: 2px solid purple;
-	border-radius: 0 0 0 5px;
-	padding: 10px;
-	z-index: 40;
+  height: 80vh;
+  background-color: #fafafa;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-left: 1px solid purple;
+  border-bottom: 2px solid purple;
+  border-radius: 0 0 0 5px;
+  padding: 10px;
+  z-index: 40;
 }
 
 .searchbar input {
-	width: 350px;
-	height: 40px;
-	border: 2px solid purple;
-	border-radius: 5px;
+  width: 350px;
+  height: 40px;
+  border: 2px solid purple;
+  border-radius: 5px;
 }
 
 .searchbar-suggestions {
-	background-color: #deadff;
-	width: 350px;
-	position: absolute;
-	top: 56px;
+  background-color: #deadff;
+  width: 350px;
+  position: absolute;
+  top: 56px;
 }
 
 .searchbar-suggestion {
-	height: 30px;
-	display: flex;
-	align-items: center;
-	padding: 5px 10px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
 }
-  .searchbar-suggestion:nth-child(even) {
-	  background-color: purple;
-	  color: #fafafa;
-  }
-  .searchbar-suggestion a {
-	  color: inherit;
-  }
+.searchbar-suggestion:nth-child(even) {
+  background-color: purple;
+  color: #fafafa;
+}
+.searchbar-suggestion a {
+  color: inherit;
+}
 
 .searchbar-tab {
-	float: left;
-	background-color: purple;
-	color: #fafafa;
-	width: 80px;
-	height: 50px;
-	border-radius: 8px 0 0 8px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 10;
+  float: left;
+  background-color: purple;
+  color: #fafafa;
+  width: 80px;
+  height: 50px;
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
-  .searchbar-tab:hover {
-	  cursor: pointer;
-  }
-  
+.searchbar-tab:hover {
+  cursor: pointer;
+}
+
 /* ------------------------ POST STYLES ----------------------*/
 
 .post-wrapper {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	width: 70vw;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 70vw;
 }
 
 .post-wrapper-header {
-	padding: 10px;
-	text-align: center;
+  padding: 10px;
+  text-align: center;
 }
 
 .delete-icon {
-	width: 50px;
-	position: absolute;
-	bottom: 50px;
-	right: 10px;
-	z-index: 20;
+  width: 50px;
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  z-index: 20;
 }
-  .delete-icon:hover {
-	cursor: pointer;  
-  }
+.delete-icon:hover {
+  cursor: pointer;
+}
 
 .post {
-	padding: 25px;
+  padding: 25px;
 }
 
 .post p {
-	padding: 10px 0;
+  padding: 10px 0;
 }
 
-  .tag-list {
-	  display: flex;
-	  flex-wrap: wrap;
-	  position: absolute;
-	  bottom: 40px;
-	  left: 0;
-	  right: 0;
-  }
-  
-  .tag-list li {
-	  background-color: purple;
-	  color: #fafafa;
-	  width: 100px;
-	  height: 40px;
-	  border-radius: 10px;
-	  margin: 10px;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-  }
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+
+.tag-list li {
+  background-color: purple;
+  color: #fafafa;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ------------------- POST FORM STYLES --------------------*/
 
 .add-post-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
 }
 
-.add-post-form > .add-post-title, .add-post-content {
-	font-size: 1.1em;
-	border: 1px solid purple;
+.add-post-form > .add-post-title,
+.add-post-content {
+  font-size: 1.1em;
+  border: 1px solid purple;
 }
 
 .add-post-input-wrapper {
-	display: flex;
-	justify-content: center;
-	width: 80%;
+  display: flex;
+  justify-content: center;
+  width: 80%;
 }
 
 .add-post-title {
-	height: 40px;
-	border: 1px solid purple;
-	flex: 4;
-	padding-left: 10px;
+  height: 40px;
+  border: 1px solid purple;
+  flex: 4;
+  padding-left: 10px;
 }
 
 .add-post-title-label {
-	background-color: purple;
-	color: #fafafa;
-	height: 40px;
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  background-color: purple;
+  color: #fafafa;
+  height: 40px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-post-content {
-	height: 40vh;
-	width: 80%;
-	padding: 10px;
+  height: 40vh;
+  width: 80%;
+  padding: 10px;
 }
 
 .add-post-submit {
-	width: 40%;
-	height: 40px;
-	border-radius: 5px;
-	background-color: purple;
-	color: #fafafa;
-	border: none;
+  width: 40%;
+  height: 40px;
+  border-radius: 5px;
+  background-color: purple;
+  color: #fafafa;
+  border: none;
 }
-  .add-post-submit:hover {
-	  cursor: pointer;
-	  background-color: yellow;
-	  color: #222222;
-	  border: 1px solid #222222;
-  }
-  
+.add-post-submit:hover {
+  cursor: pointer;
+  background-color: yellow;
+  color: #222222;
+  border: 1px solid #222222;
+}
 
 /* --------------------- FOOTER STYLES ---------------------*/
 
 footer {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	border-top: 1px solid #222222;
-	display: flex;
-	justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #222222;
+  display: flex;
+  justify-content: space-between;
 }
 
 footer > * {
-	display: flex;
-	height: 40px;
-	align-items: center;
+  display: flex;
+  height: 40px;
+  align-items: center;
 }
 
 footer li {
-	padding: 0 10px;
+  padding: 0 10px;
 }
 
 .footer-left {
-	
 }
 
 .footer-right {
-	
+}
+
+@media screen and (max-width: 600px) {
+  .login-btn {
+    width: 30%;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .post-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .addPost {
+    background-color: #222222;
+    color: #fafafa;
+  }
 }
