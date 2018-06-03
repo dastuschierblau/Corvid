@@ -377,6 +377,13 @@ a {
   border: 1px solid #222222;
 }
 
+.add-post-title,
+.add-post-title-label,
+.add-post-content,
+.add-post-submit {
+  margin: 10px;
+}
+
 /* --------------------- FOOTER STYLES ---------------------*/
 
 footer {
