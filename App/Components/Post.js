@@ -10,16 +10,18 @@ import {
 } from "../Actions/shared.js";
 
 /* Util function implementing newlines found inside of strings. */
-function enableNewlines(str) {
-  const newLines = str
-    .split("\n")
-    .map((item, index) => <p key={index}>{item}</p>);
+function enableNewlines(str, codeTag) {
+  if (codeTag === true) {
+    return str.split("\n").map((item, index) => {
+      return <code key={index}>{item}</code>;
+    });
+  } else {
+    const newLines = str
+      .split("\n")
+      .map((item, index) => <p key={index}>{item}</p>);
 
-  return newLines;
-}
-
-function enableCodeTags(str) {
-  return <code>{str}</code>;
+    return newLines;
+  }
 }
 
 class Post extends React.Component {
@@ -62,7 +64,7 @@ class Post extends React.Component {
 
             <h1>{currentPost.title}</h1>
             {enableNewlines(content)}
-            {code ? enableCodeTags(code) : null}
+            {code ? enableNewlines(code, true) : null}
 
             <ul className="tag-list">
               {currentPost.keywords.map(item => {
