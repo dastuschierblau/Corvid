@@ -78,16 +78,16 @@ const posts = [
   {
     id: "_ghi3wq4do",
     title: "Custom data filtering function",
-    keywords: [],
+    keywords: ["functions", "javaScript"],
     author: "Emmett Slack",
     timestamp: new Date(2018, 6, 6, 10, 40),
     content:
       "Defining a function that in turn accepts an optional custom filtering function as a second parameter:",
     code: `function getData(source_data, filterFn) {
-      \tlet results = [];
-      \tfor (let i = 0; i < source_data.length; i++) {
-        \t\tif (
-         \t\t\t typeof filterFn === "undefined" ||
+      let results = [];
+      for (let i = 0; i < source_data.length; i++) {
+        if (
+          typeof filterFn === "undefined" ||
           typeof filterFn !== "function" ||
           filterFn(source_data[i])
         ) {

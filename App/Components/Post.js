@@ -39,7 +39,7 @@ class Post extends React.Component {
     let okToDelete = confirm("Are you sure you want to delete this post?");
 
     if (okToDelete) {
-      this.props.dispatch(removePost(id));
+      this.props.dispatch(removePost(id, this.props.history));
     }
   }
 

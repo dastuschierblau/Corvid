@@ -47,12 +47,13 @@ export function addPost({ title, content, code, tags, author }) {
   };
 }
 
-export function removePost(id) {
-  return {
+export const removePost = (id, history) => dispatch => {
+  dispatch({
     type: REMOVE_POST,
     id
-  };
-}
+  });
+  history.push("/");
+};
 
 export function receivePosts(posts) {
   return {
